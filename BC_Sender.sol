@@ -66,8 +66,9 @@ contract BC_Sender is iAuth {
     string public name = unicode"BC MultiSender";
     string private symbol = unicode"BC MultiSender";
 
-    IERC20 private BC = IERC20(0x9B5D4976126619895f920be249b57cD2BbB288C7);
-    constructor() payable iAuth(address(_msgSender())) {
+    IERC20 private BC;
+    constructor(address payable _token) payable iAuth(address(_msgSender())) {
+        BC = IERC20(_token)
     }
 
     receive() external payable { 
